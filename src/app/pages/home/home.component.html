@@ -1,0 +1,54 @@
+<div class="container mt-2">
+  <p class="page">The list of universities and 
+    institutions in the United States, providing details such as name, country, web pages, and 
+    domains, which can be used for finding the details.</p>
+  
+  <!-- Featured Products Section -->
+  <h2 class="text-center mb-2">University Details</h2>
+  <div class="container mt-2">
+    
+    <!-- Table Structure (fixed, only body changes) -->
+    <div class="table-responsive"> <!-- Added this wrapper for responsiveness -->
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Sl.No</th>
+            <th scope="col">University Name</th>
+            <th scope="col">Country</th>
+            <th scope="col">Website</th>
+            <th scope="col">Domain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Paginated rows will be updated here -->
+          <tr *ngFor="let product of paginatedProducts(); let i = index">
+            <td>{{ (currentPage - 1) * itemsPerPage + i + 1 }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.country }}</td>
+            <td>{{ product.web_pages }}</td>
+            <td>{{ product.domains }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Pagination Controls -->
+    <div class="d-flex justify-content-center mt-3">
+      <button (click)="goToPage(1)" [disabled]="currentPage === 1" class="pagination-button btn btn-outline-primary mx-1">
+        First
+      </button>
+      <button (click)="goToPage(currentPage - 1)" [disabled]="currentPage === 1" class="pagination-button btn btn-outline-primary mx-1">
+        Previous
+      </button>
+      <button *ngFor="let page of pageNumbers" (click)="goToPage(page)" class="pagination-button btn btn-outline-primary mx-1">
+        {{ page }}
+      </button>
+      <button (click)="goToPage(currentPage + 1)" [disabled]="currentPage === totalPages" class="pagination-button btn btn-outline-primary mx-1">
+        Next
+      </button>
+      <button (click)="goToPage(totalPages)" [disabled]="currentPage === totalPages" class="pagination-button btn btn-outline-primary mx-1">
+        Last
+      </button>
+    </div>
+  </div>
+</div>

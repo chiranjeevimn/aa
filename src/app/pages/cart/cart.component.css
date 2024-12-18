@@ -1,0 +1,12 @@
+.lead{
+    text-align:justify;
+    color: rgb(110, 107, 134);
+    font-family: 'Times New Roman', Times, serif;
+    font-size: large;
+}
+.image-container {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+  }

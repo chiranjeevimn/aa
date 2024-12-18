@@ -1,0 +1,113 @@
+<div class="container">
+    <h2>Select Universities</h2>
+  
+    <!-- Search Input -->
+    <div class="mb-3">
+      <label for="universitySearch" class="form-label">Search Universities:</label>
+      <div class="input-group">
+        <input
+          type="text"
+          id="universitySearch"
+          class="form-control"
+          [(ngModel)]="searchTerm"
+          (input)="searchUniversities()"
+          placeholder="Enter university name"
+        />
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="clearSearch()"
+        >
+          Clear
+        </button>
+      </div>
+    </div>
+  
+    <!-- Dropdown for selecting universities -->
+    <div class="mb-3">
+      <label for="universitySelect" class="form-label">Available Universities:</label>
+      <select
+        id="universitySelect"
+        class="form-select"
+        (change)="onUniversitySelect($event)"
+      >
+        <option *ngFor="let university of universities" [value]="university.name">
+          {{ university.name }}
+        </option>
+      </select>
+    </div>
+  
+    <!-- Manual Add Input -->
+    <div class="mb-3">
+      <label for="manualUniversity" class="form-label">Add University Manually:</label>
+      <div class="input-group">
+        <input
+          type="text"
+          id="manualUniversity"
+          class="form-control"
+          [(ngModel)]="manualUniversityName"
+          placeholder="Enter university name"
+        />
+        <button
+          class="btn btn-primary"
+          type="button"
+          (click)="addManualUniversity()"
+        >
+          Add University
+        </button>
+      </div>
+    </div>
+  
+    <!-- Display Selected Universities -->
+    <h3>Your Selected Universities</h3>
+    <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">SL.No</th>
+            <th scope="col">University Name</th>
+            <th scope="col">Website</th>
+            <th scope="col">Domain</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let university of selectedUniversities; let i = index">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>{{ university.name }}</td>
+            <td>
+              <a [href]="university.web_pages" target="_blank">
+                {{ university.web_pages }}
+              </a>
+            </td>
+            <td>{{ university.domains }}</td>
+            <td>
+              <button
+                class="btn btn-danger btn-sm"
+                (click)="removeUniversity(university)"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      
+  
+    <!-- Buttons for actions -->
+    <div class="mt-3">
+      <button
+        class="btn btn-warning"
+        type="button"
+        (click)="clearSelectedUniversities()"
+      >
+        Clear All 
+      </button>
+      <button
+        class="btn btn-success ms-2"
+        type="button"
+        (click)="downloadSelectedUniversities()"
+      >
+        Download CSV
+      </button>
+    </div>
+  </div>
+  

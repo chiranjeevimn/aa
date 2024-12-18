@@ -1,0 +1,55 @@
+<div class="container mt-4">
+    <h2 class="head text-center mb-4">Search the University Details</h2>
+
+    <!-- Dropdown Selection -->
+    <div class="mb-3 d-flex align-items-center">
+        <label for="productSearch" class="form-label me-3">University:</label>
+      
+        <!-- Search Input -->
+        <input type="text" id="productSearch" class="form-control mb-2" placeholder="Type to search university..."
+          [(ngModel)]="searchTerm" (input)="filterProducts()" />
+      
+        <!-- Filtered Dropdown -->
+        <label for="productSearch" class="form-label me-3">Dropdown:</label>
+        <select id="productSelect" class="form-select ms-3" [(ngModel)]="selectedProduct" (change)="onProductChange()">
+          <option *ngFor="let product of filteredProducts" [value]="product.name">
+            {{ product.name }}
+          </option>
+        </select>
+      </div>
+      
+      
+
+    <!-- Display Product Details -->
+    <div *ngIf="selectedProductDetails" class="mt-4">
+        <h3 class="text-center">Selected University Details</h3>
+        <table class="table table-bordered mt-3">
+            <thead class="table-light">
+                <tr>
+                    <th>Field</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Name</strong></td>
+                    <td>{{ selectedProductDetails.name }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Country</strong></td>
+                    <td>{{ selectedProductDetails.country }}</td>
+                </tr>
+                <tr>
+                    <td><strong>Website</strong></td>
+                    <td><a [href]="selectedProductDetails.web_pages" target="_blank">{{ selectedProductDetails.web_pages
+                            }}</a></td>
+                </tr>
+                <tr>
+                    <td><strong>Domains</strong></td>
+                    <td><a [href]="selectedProductDetails.web_pages" target="_blank">{{ selectedProductDetails.domains
+                            }}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
